@@ -25,3 +25,19 @@ Pelda kimenet:
 [0, 35, 1]
 
 """
+
+n = int(input("Kérek egy számot: "))
+lista = []
+poz = 0
+neg = 0
+valtozo = 0
+while valtozo != n:
+    n2 = int(input("Kérek még egy számot: "))
+    if n2 < 0:
+        neg = n2
+        valtozo -=1
+    if n2 > 0:
+        poz = n2
+        lista.append(poz)
+    valtozo+=1
+print(lista)
