@@ -36,7 +36,7 @@ while valtozo != n:
     if n2 < 0:
         neg = n2
         valtozo -=1
-    if n2 > 0:
+    if n2 >= 0:
         poz = n2
         lista.append(poz)
     valtozo+=1
