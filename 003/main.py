@@ -32,7 +32,7 @@ poz = 0
 neg = 0
 valtozo = 0
 while valtozo != n:
-    n2 = int(input("Kérek még egy számot: "))
+    n2 = int(input())
     if n2 < 0:
         neg = n2
         valtozo -=1
