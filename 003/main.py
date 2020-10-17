@@ -26,7 +26,7 @@ Pelda kimenet:
 
 """
 
-n = int(input("Kérek egy számot: "))
+n = int(input())
 lista = []
 poz = 0
 neg = 0
