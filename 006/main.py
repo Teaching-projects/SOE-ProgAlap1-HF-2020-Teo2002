@@ -30,12 +30,12 @@ Kimenet:
 szam = []
 no = ()
 while no != 0:
-    no = int(input("Adj meg egy szamot: "))
+    no = int(input())
     if no not in szam:
         szam.append(no)
     elif no in szam:
-        print("---> ", no, " Ez a szam mar a listaban van!")
+        print("---> ", no)
     if no == 0:
-        print("Listazas:")
+        print()
         szam = szam[:-1] 
-print("A szamjegyek sorrendben: ", szam)
+print (szam)
