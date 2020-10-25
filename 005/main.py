@@ -19,7 +19,7 @@ Pl.:
 49 (100)  -->  1
 """
 
-szam = [int(input("Adj meg egy szamot az atvaltashoz: "))]
+szam = [int(input())]
 e1 = 1
 while e1 != 0:
   e1 = szam[0] // 7
@@ -27,5 +27,5 @@ while e1 != 0:
   szam.append(e2)
   szam[0] = e1
 osszeg = sum(szam)
-print("A szamjegyek osszege: ",osszeg)
+print (osszeg)
 

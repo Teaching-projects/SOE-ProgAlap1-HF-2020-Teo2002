@@ -26,3 +26,16 @@ Kimenet:
 5
 6
 """
+
+szam = []
+no = ()
+while no != 0:
+    no = int(input("Adj meg egy szamot: "))
+    if no not in szam:
+        szam.append(no)
+    elif no in szam:
+        print("---> ", no, " Ez a szam mar a listaban van!")
+    if no == 0:
+        print("Listazas:")
+        szam = szam[:-1] 
+print("A szamjegyek sorrendben: ", szam)
