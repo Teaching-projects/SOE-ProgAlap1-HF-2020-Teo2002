@@ -15,10 +15,9 @@ def legnko(n1, n2):
         (n1, n2) = (n2, n1 % n2)
     return n1
 
-n1 = int(input("Az elso szam: "))
-n2 = int(input("A masodik szam: "))
-print("A ket szam legnagyobb kozos osztoja:",(legnko(n1, n2)))
-
+n1 = int(input())
+n2 = int(input())
+print(legnko(n1, n2))
 
 
     
