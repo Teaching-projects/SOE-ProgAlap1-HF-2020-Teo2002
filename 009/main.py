@@ -25,9 +25,20 @@ Pelda kimenet:
 Feltetelezhetjuk, hogy legalabb egy nem 0 szamot fogunk kapni.
 
 """
+szam = 1
+lista = []
+while szam != 0:
+  szam=int(input())
+  lista.append(szam)
+idx = 0
+max = 0
+while idx < len(lista):
+  if lista[idx] > max:
+    max = list[idx]
+  idx+=1
+for i in range(1,max+1):
+  print(str(i)+": "+str(list.count(i)))
 
 
 
-
-print(str(     )+": "+str(   ))
 
