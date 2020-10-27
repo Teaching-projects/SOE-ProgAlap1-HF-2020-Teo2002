@@ -27,17 +27,13 @@ Kimenet:
 6
 """
 
-number= []
-no = ()
+number = int(input())
+numbers = []
 
-while no != 0:
-    no = int(input())
-    if no not in number:
-        number.append(no)
-    elif no in number:
-        print("---> ", no)
-    if no == 0:
-        print()
-        number = number[:-1] 
+while number != 0:
+        if number not in numbers:
+            numbers.append(number)
+        number = int(input())
 
-print(no)
+for i in range(len(numbers)):
+    print(numbers[i])

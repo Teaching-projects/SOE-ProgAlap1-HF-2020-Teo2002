@@ -1,6 +1,9 @@
 x=0.0
 y=0.0
 
+def Tavolsag(x,y):
+    print(round(((0 - x) ** 2 + (0 - y) ** 2) ** 0.5, 2))
+    
 while True:
     irany = str(input())
     if irany == "stop": 
