@@ -14,7 +14,7 @@ while True:
     if irany == "right": 
         x = x + egyseg
     if irany == "left": 
-        x = y - egyseg 
+        x = x - egyseg 
 print(round(x,2))
 print(round(y,2))
 Tavolsag(x,y)
