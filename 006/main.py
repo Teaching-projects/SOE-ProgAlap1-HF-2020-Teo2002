@@ -27,15 +27,17 @@ Kimenet:
 6
 """
 
-szam = []
+number= []
 no = ()
+
 while no != 0:
     no = int(input())
-    if no not in szam:
-        szam.append(no)
-    elif no in szam:
+    if no not in number:
+        number.append(no)
+    elif no in number:
         print("---> ", no)
     if no == 0:
         print()
-        szam = szam[:-1] 
-print (szam)
+        number = number[:-1] 
+
+print(no)

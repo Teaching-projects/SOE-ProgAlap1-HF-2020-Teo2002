@@ -26,19 +26,23 @@ Feltetelezhetjuk, hogy legalabb egy nem 0 szamot fogunk kapni.
 
 """
 szam = 1
-lista = []
-while szam != 0:
-  szam=int(input())
-  lista.append(szam)
-idx = 0
-max = 0
-while idx < len(lista):
-  if lista[idx] > max:
-    max = list[idx]
-  idx+=1
-for i in range(1,max+1):
-  print(str(i)+": "+str(list.count(i)))
+lista1 = []
+lista2 = []
 
+while szam!=0:
+    szam = int(input())
+    if szam not in lista1 and szam != 0:
+        lista2.append(szam)
+    if szam != 0:
+        lista1.append(szam)
+
+max = lista2[0]
+for h in range(len(lista2)):
+    if lista2[h] > max:
+        max = lista2[h]
+
+for i in range(1,max+1):
+    print(str(i)+": "+str(lista1.count(i)))
 
 
 

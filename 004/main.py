@@ -10,14 +10,23 @@ Kimenet:
 54
 """
 
-def legnko(n1, n2):
-    while n2 != 0:
-        (n1, n2) = (n2, n1 % n2)
-    return n1
-
 n1 = int(input())
 n2 = int(input())
-print(legnko(n1, n2))
+a = n1
+b = n2
+
+while n1 !=n2:
+    if n1 > n2:
+        n1 = n1 - n2
+    else:
+        n2 = n2 - n1
+
+print(n1)
+print(int(a*b/n1))
+
+
+
+
 
 
     
