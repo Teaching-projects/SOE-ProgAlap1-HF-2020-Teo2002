@@ -1,27 +1,22 @@
+honap = 0
 total = 0
-honap = 12
 perc = []
 sms = []
 szamla = []
 
-for i in range(honap):
-    telperc = int(input())
-    sms = int(input())
-    percek.append(telperc)
-    smsek.append(sms)
-
-
+while honap != 12:
+    perc.append(int(input()))
+    sms.append(int(input()))
+    honap += 1
 csomhav = int(input())
 csomperc = int(input())
 csomsms = int(input())
 
-for i in range(honap):
-    most = 0
-    if (csomperc * percek[i]) + (csomsms * smsek[i]) > csomhav:
-        most += (csomperc * percek[i]) + (csomsms * smsek[i])
-    else: most += csomhav
-    szamla.append(most)
-    total += most
+for i in range(len(perc)):
+    if perc[i]*csomperc + sms[i]*csomsms < csomhav: szamla.append(csomhav)
+    else: szamla.append(perc[i]*csomperc + sms[i]*csomsms)
+for i in range(len(szamla)):
+    total += szamla[i]
 
 print(szamla)
 print(total)
