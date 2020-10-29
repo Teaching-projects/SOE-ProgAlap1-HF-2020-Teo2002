@@ -1,5 +1,5 @@
 total = 0
-honap = 0
+honap = 12
 perc = []
 sms = []
 szamla = []
