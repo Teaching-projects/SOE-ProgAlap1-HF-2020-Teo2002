@@ -49,12 +49,9 @@ def initialize_map (width, height):
         sor.append("█")
         terkep.append(sor)
     terkep.append(["█"] * width)
-    
     return terkep
 
-width=int(input())
-height=int(input())
-print(initialize_map(width,height))
+
 
 
 """
