@@ -34,6 +34,21 @@ Ket dolog valtozott meg:
 
 def initialize_map (width, height):
     # ide masold be a helyes megoldasodat a multkorirol
+    terkep = [["██",]*width]
+    for i in range(height-2):
+        sor = ["██"]
+        for j in range(width-2):
+            sor.append("░░")
+        sor.append("██")
+        terkep.append(sor)
+    terkep.append(["██"] * width)
+    return terkep
+
+def pretty_map_print(map):
+    for i in range(len(map)):
+        for j in range(len(map[i])):
+            print(map[i][j],end="")
+        print()
 
 def pretty_map_print(map, character):
     # Ide masold be a multkorit, a fenti modositasokkal. 
@@ -45,6 +60,7 @@ def pretty_map_print(map, character):
 ####### Ez alatt nem modosithatsz #############################
 ###############################################################
 ###############################################################
+
 
 
 def initialize_character():
