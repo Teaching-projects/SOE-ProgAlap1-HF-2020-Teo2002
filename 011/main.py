@@ -40,6 +40,28 @@ def initialize_map (width, height):
     # Ide irjatok meg a kodotokat. Mindket argumentum egy int, es a sorok/oszlopok szamat fogja megadni.
     # A fuggveny ugy mukodjon, egy egy teglalap alaku terkepet adjon vissza a megfelelo sor es oszlopszammal, de ugy, hogy a szelso mezok falak (es csak azok)
     # Feltetelezheto, hogy mindket ertek legalabb 2
+    x_cord = int(0)
+    y_cord = int(0)
+    lanetext = []
+    text = []
+    while height > y_cord :
+        while width > x_cord :
+            sym = "░"
+            if x_cord == (width - 1) or y_cord == (height - 1) or x_cord == 0 or y_cord == 0 : sym = "█"
+            x_cord += 1
+            lanetext.append(sym)
+        x_cord = 0
+        text.append(str(lanetext))
+        del lanetext[:]
+        y_cord += 1
+    print('\n'.join(map(str, text)))
+    print('\n')
+    return text
+
+
+width = int(input())
+height = int(input())
+print(initialize_map(width, height))
 
 
 """
