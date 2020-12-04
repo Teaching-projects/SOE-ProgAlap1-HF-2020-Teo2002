@@ -87,13 +87,12 @@ def pretty_time(seconds):
 # Ez a fuggveny szamolja ki, hogy mennyi volt az osszes emelkedes, azaz hany metert mentunk felfele
 
 def total_ascent(gpx):
-    osszemelkedes = 0
+    totalascent = 0
     for i in range(len(gpx)-1):
-        if gpx[i+1]["elevation"] > gpx[i]["elevation"]:
-            osszemelkedes += (gpx[i+1]["elevation"] - gpx[i]["elevation"])
-        else: 
-            osszemelkedes += (gpx[i]["elevation"] - gpx[i+1]["elevation"])
-    return osszemelkedes
+        ascent = gpx[i+1]["elavation"] - gpx[i]["elavation"]
+        if ascent > 0:
+            totalascent += ascent
+    return totalascent
 
 # Ez a fuggveny keresse meg a gpx track elejen azt a legrovidebb reszt, ami mar atlepi a megadott tavolsagot, majd errol a reszrol adjon vissza egy masolatot.
 # A fuggveny adjon vissza egy ures tracket, ha az egesz gpx track nincs olyan hosszu, mint a megadott tavolsag.
@@ -114,17 +113,15 @@ def chop_after_distance(gpx, distance):
 # Ez a fuggveny keresse meg a leggyorsabb, legalabb 1 km-es szakaszt a trackben, es adjon vissza rola egy masolatot
 
 def fastest_1k(gpx):
-    min_time = total_time(chop_after_distance(gpx,1000))
-    for i in range(len(gpx)):
-        track = chop_after_distance(gpx[i:],1000)
-        time = total_time(track)
-        if time < min_time and time > 0:
-            min_time = time
-            
-    for j in range(len(gpx)):
-        fastest = chop_after_distance(gpx[j:],1000)
-        if total_time(fastest) == min_time:
-            return fastest
+    min = total_time(chop_after_distance(gpx,1000))
+    for i in range (len(gpx)):
+        track2 = chop_after_distance(gpx[i:],1000)
+        if total_time(track2) < min and total_time(track2) > 0:
+            min = total_time(track2)
+    for j in range (len(gpx)):
+        track3 = chop_after_distance(gpx[j:],1000)
+        if total_time(track3) == min:
+            return track3
 
 # Az alabbi reszek betoltenek egy ilyen pickle fajlt, es kiirjak a statisztikakat megformazva
 import pickle
