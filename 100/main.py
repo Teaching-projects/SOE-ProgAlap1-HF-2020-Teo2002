@@ -44,7 +44,6 @@ def total_time(gpx):
         osszido += gpx[i+1]["timestamp"] - gpx[i]["timestamp"]
     return osszido
 
-
 # Ez a fuggveny adja meg masodpercben, hogy a futas soran hany masodpercig alldogaltunk csak futas helyett.
 # Alldogalasnak szamit, ha ket meresi pont kozott nem valtozik a pozicio
 
