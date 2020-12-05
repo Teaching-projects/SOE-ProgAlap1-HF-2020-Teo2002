@@ -100,6 +100,7 @@ def total_ascent(gpx):
 def chop_after_distance(gpx, distance):
     track = []
     ossztav = 0
+
     if total_distance(gpx) < distance:
         return track
     else:
@@ -107,8 +108,8 @@ def chop_after_distance(gpx, distance):
             ossztav += position_distance(gpx[i]["position"], gpx[i+1]["position"])
             if ossztav > distance:
                 maxindex = i+1
-                track.append(gpx[i])
-            return track
+                track = gpx[0:maxindex+1]
+                return track
     
 # Ez a fuggveny keresse meg a leggyorsabb, legalabb 1 km-es szakaszt a trackben, es adjon vissza rola egy masolatot
 
