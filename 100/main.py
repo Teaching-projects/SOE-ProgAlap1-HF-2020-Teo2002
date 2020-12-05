@@ -39,10 +39,10 @@ def total_distance(gpx):
 # Ez adja meg maasodpercben, milyen hosszan futottunk
 
 def total_time(gpx):
-    osszido = 0
+    totaltime = 0
     for i in range(len(gpx)-1):
-        osszido += gpx[i+1]["timestamp"] - gpx[i]["timestamp"]
-    return osszido
+        totaltime += gpx[i+1]["timestamp"] - gpx[i]["timestamp"]
+    return totaltime
 
 # Ez a fuggveny adja meg masodpercben, hogy a futas soran hany masodpercig alldogaltunk csak futas helyett.
 # Alldogalasnak szamit, ha ket meresi pont kozott nem valtozik a pozicio
