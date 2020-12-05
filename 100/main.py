@@ -39,10 +39,10 @@ def total_distance(gpx):
 # Ez adja meg maasodpercben, milyen hosszan futottunk
 
 def total_time(gpx):
-    totaltime = 0
+    osszido = 0
     for i in range(len(gpx)-1):
-        totaltime += gpx[i+1]["timestamp"] - gpx[i]["timestamp"]
-    return totaltime
+        osszido += gpx[i+1]["timestamp"] - gpx[i]["timestamp"]
+    return osszido
 
 # Ez a fuggveny adja meg masodpercben, hogy a futas soran hany masodpercig alldogaltunk csak futas helyett.
 # Alldogalasnak szamit, ha ket meresi pont kozott nem valtozik a pozicio
@@ -71,16 +71,18 @@ def moving_time(gpx):
 # Rossz peldak: 03:14, 12:23:5, 1:0:1
 
 def pretty_time(seconds):
-    ora = seconds // 3600   
-    perc = (seconds // 60) - ora * 60  
-    mp = seconds - (ora*3600 + perc*60)  
-    if perc < 10:
-        perc = "0"+str(perc)
-    if mp < 10:
-        mp = "0"+str(mp)
-    if seconds < 3600: # 1 ora = 3600 mp
-        prettytime =  "{}:{}".format(perc,mp)
-    else: prettytime =  "{}:{}:{}".format(ora,perc,mp)
+
+    prettytime = 0
+    h = seconds // 3600
+    m = (seconds % 3600) // 60
+    s = ((seconds % 3600) % 60) % 60
+    if h < 1:
+        if m == 0:
+            prettytime = "{:02d}:{:02d}".format(m, s)
+        else:
+            prettytime = "{}:{:02d}".format(m, s)
+    else:
+        prettytime = "{}:{:02d}:{:02d}".format(h, m, s)
     return prettytime
   
 # Ez a fuggveny szamolja ki, hogy mennyi volt az osszes emelkedes, azaz hany metert mentunk felfele
