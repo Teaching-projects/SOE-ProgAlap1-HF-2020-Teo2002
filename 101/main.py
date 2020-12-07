@@ -1,5 +1,5 @@
 from typing import Dict, List
-elet,betuk, megjelenszo, osszes = (), [], [], ()
+elet, betuk, megjelenszo, osszes, elhasznalt = [], [], [], int(), int()
 Tippek=List[str]
 """Leadott tippek, azaz betűk listájának típusa."""
 
@@ -100,7 +100,7 @@ def eletek(osszes:int,elhasznalt:int)->str:
     Returns:
         str: 😄😄😄💀💀 formátumú indikátor (a példa adatai: 5 összes, 2 elhasznált)
     """
-    osszes=maxelet-elhasznalt
+    osszes = maxelet-elhasznalt
     for i in range (maxelet):
         if osszes > 0:
             elet.append("😄")
@@ -108,7 +108,7 @@ def eletek(osszes:int,elhasznalt:int)->str:
             elet.append("💀")
     return elet
 
-def akasztofa(szo:str,osszes_elet:int) -> None:
+def akasztofa(szo:str,maxelet:int) -> None:
 
     """Végigvisz egy akasztófa játékot, ahol a megadott szót kell kitalálni, és `osszes_elet` rossz tipp után vesztettünk.
 
@@ -133,15 +133,15 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
     szo = list(szo)
     for i in range (maxelet):
         betu = input()
-        if (tartalmazza(szo, betu)) == True:
+        if tartalmazza(szo, betu) == True:
             megjelenites(szo,betuk)
-        elif (tartalmazza(szo, betu)) == False:
+        elif tartalmazza(szo, betu) == False:
             rossz_tippek(szo, betuk)
             eletek(osszes, elhasznalt)
         megfejtett(szo, betuk, megjelenszo)
-    if (megfejtett(szo, betuk, megjelenszo)) == True:
+    if megfejtett(szo, betuk, megjelenszo) == True:
         print ("Gratulalok, nyertel!", elet, " eleted maradt.")
-    if (megfejtett(szo, betuk, megjelenszo)) == False:
+    if megfejtett(szo, betuk, megjelenszo) == False:
         print("Sajnalom, nem nyertel,ez lett volna a megoldas: ", szo)
            
     
