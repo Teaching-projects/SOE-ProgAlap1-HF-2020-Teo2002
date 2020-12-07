@@ -13,7 +13,11 @@ def kozte_van(betu:str, betuk:Tippek) -> bool:
     Returns:
         bool: `True` ha benne van, `False` ha nincsen.
     """
-    pass
+    for i in range (len (betuk)):
+        if betu == betuk[i]:
+            return True
+        else:
+            return False
 
 specialis_karakterek=[' ','.',',','!','?',':','-']
 
@@ -29,9 +33,15 @@ def megjelenites(szo:str, betuk:Tippek) -> str:
     Returns:
         str: a megjelenített változata a szónak
     """
-    pass
+    megjelenszo=[]
+    for i in range(len(betuk)):
+        if betuk[i] in szo:
+            megjelenszo.append(betuk[i])
+        else: megjelenszo.append('_')
+    return megjelenszo
+        
 
-def megfejtett(szo:str, betuk:Tippek) -> bool:
+def megfejtett(szo:str, betuk:Tippek, megjelenszo) -> bool:
     """Megadja, hogy sikerült-e már megfejtenünk a szót, azaz minden benne levő betű már a tippjeink között van.
 
     Args:
@@ -41,7 +51,11 @@ def megfejtett(szo:str, betuk:Tippek) -> bool:
     Returns:
         bool: `True` ha teljesen megfejtettük a szót, `False` különben
     """
-    pass
+    
+    if "_" in megjelenszo:
+        return False
+    else:
+        return True
 
 def tartalmazza(szo:str, betu:str) -> bool:
     """Megadja, hogy a megaadott betű szerepel-e a megadott szóban.
@@ -53,7 +67,10 @@ def tartalmazza(szo:str, betu:str) -> bool:
     Returns:
         bool: `True` ha szerepel, `False` ha nem    
     """
-    pass
+    if betu in szo:
+        return True
+    else:
+        return False
 
 def rossz_tippek(szo:str, betuk:Tippek) -> int:
     """Megadja, hogy hány rossz betűt tippeltünk eddig.
@@ -65,7 +82,11 @@ def rossz_tippek(szo:str, betuk:Tippek) -> int:
     Returns:
         int: a rossz tippek száma
     """
-    pass
+    elhasznalt = (0)
+    for i in range(len(betuk)): 
+        if betuk[i] not in szo:
+            elhasznalt = elhasznalt+1 
+    return elhasznalt
 
 def eletek(osszes:int,elhasznalt:int)->str:
     """Visszaad egy olyan szöveget, ami egy indikátor arra, hány életünk van még.
@@ -79,9 +100,16 @@ def eletek(osszes:int,elhasznalt:int)->str:
     Returns:
         str: 😄😄😄💀💀 formátumú indikátor (a példa adatai: 5 összes, 2 elhasznált)
     """
-    pass
+    osszes=maxelet-elhasznalt
+    for i in range maxelet:
+        if osszes > 0:
+            elet.append("😄")
+        else:
+            elet.append("💀")
+    return elet
 
 def akasztofa(szo:str,osszes_elet:int) -> None:
+
     """Végigvisz egy akasztófa játékot, ahol a megadott szót kell kitalálni, és `osszes_elet` rossz tipp után vesztettünk.
 
     A játék minden körben először írja ki, hogy mit látunk a megfejtendő szóból, alá egy indikátort arról, hogy hány életünk van még, majd végül a tippelt karakterek listáját a tippek sorrendjében.
@@ -101,7 +129,21 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
         szo (str): a megfejtendő szó
         osszes_elet (int): az életeink száma, azaz hány rossz tipp után vesztettünk
     """
-    pass
+
+    szo = list(szo)
+    while elet > 0 or (megfejtett(szo:str, betuk:Tippek, megjelenszo)) == "False": 
+        betu = input()
+        if (tartalmazza(szo:str, betu:str)) == "True":
+            megjelenites(szo:str,betuk:Tippek)
+        elif (tartalmazza(szo:str, betu:str)) == "False":
+            rossz_tippek(szo:str, betuk:Tippek)
+            eletek(osszes:int, elhasznalt:int)
+        megfejtett(szo:str, betuk:Tippek, megjelenszo)
+    if (megfejtett(szo:str, betuk:Tippek, megjelenszo)) == "True":
+        print ("Gratulalok, nyertel!", elet, " eleted maradt.")
+    if (megfejtett(szo:str, betuk:Tippek, megjelenszo)) == "False":
+        print("Sajnalom, nem nyertel,ez lett volna a megoldas: ", szo)
+           
     
 
 
