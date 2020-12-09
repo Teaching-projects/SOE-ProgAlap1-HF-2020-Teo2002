@@ -1,5 +1,4 @@
 from typing import Dict, List
-elet, betuk, megjelenszo, osszes, elhasznalt = [], [], [], int(), int()
 Tippek=List[str]
 """Leadott tippek, azaz betűk listájának típusa."""
 
@@ -13,11 +12,10 @@ def kozte_van(betu:str, betuk:Tippek) -> bool:
     Returns:
         bool: `True` ha benne van, `False` ha nincsen.
     """
-    for i in range (len (betuk)):
-        if betu == betuk[i]:
-            return True
-        else:
-            return False
+    if betu in betuk:
+        return True
+    else:
+        return False
 
 specialis_karakterek=[' ','.',',','!','?',':','-']
 
@@ -34,14 +32,15 @@ def megjelenites(szo:str, betuk:Tippek) -> str:
         str: a megjelenített változata a szónak
     """
     megjelenszo=[]
-    for i in range(len(betuk)):
-        if betuk[i] in szo:
-            megjelenszo.append(betuk[i])
+    for i in range(len(szo)):
+        if szo[i] in betuk:
+            megjelenszo.append(szo[i])
+        elif szo[i] in specialis_karakterek:
+            megjelenszo.append(szo[i])
         else: megjelenszo.append('_')
     return megjelenszo
         
-
-def megfejtett(szo:str, betuk:Tippek, megjelenszo) -> bool:
+def megfejtett(szo:str, betuk:Tippek) -> bool:
     """Megadja, hogy sikerült-e már megfejtenünk a szót, azaz minden benne levő betű már a tippjeink között van.
 
     Args:
@@ -52,10 +51,10 @@ def megfejtett(szo:str, betuk:Tippek, megjelenszo) -> bool:
         bool: `True` ha teljesen megfejtettük a szót, `False` különben
     """
     
-    if "_" in megjelenszo:
-        return False
-    else:
-        return True
+    for i in range(len(szo)):
+        if not(szo[i] in betuk):
+            return False
+    return True
 
 def tartalmazza(szo:str, betu:str) -> bool:
     """Megadja, hogy a megaadott betű szerepel-e a megadott szóban.
@@ -100,15 +99,17 @@ def eletek(osszes:int,elhasznalt:int)->str:
     Returns:
         str: 😄😄😄💀💀 formátumú indikátor (a példa adatai: 5 összes, 2 elhasznált)
     """
+
+    elet=[]
     osszes = maxelet-elhasznalt
     for i in range (maxelet):
-        if osszes > 0:
+        if i < osszes:
             elet.append("😄")
         else:
             elet.append("💀")
     return elet
 
-def akasztofa(szo:str,maxelet:int) -> None:
+def akasztofa(szo:str,osszes_elet:int) -> None:
 
     """Végigvisz egy akasztófa játékot, ahol a megadott szót kell kitalálni, és `osszes_elet` rossz tipp után vesztettünk.
 
@@ -130,19 +131,28 @@ def akasztofa(szo:str,maxelet:int) -> None:
         osszes_elet (int): az életeink száma, azaz hány rossz tipp után vesztettünk
     """
 
-    szo = list(szo)
-    for i in range (maxelet):
+    betuk, megjelenszo, szo = [], [], list(szo)
+    while maxelet-rossz_tippek(szo, betuk) > 0 and not (megfejtett(szo, betuk)):
+        print("Kerem a betut!")
         betu = input()
-        if tartalmazza(szo, betu) == True:
-            megjelenites(szo,betuk)
-        elif tartalmazza(szo, betu) == False:
-            rossz_tippek(szo, betuk)
-            eletek(osszes, elhasznalt)
-        megfejtett(szo, betuk, megjelenszo)
-    if megfejtett(szo, betuk, megjelenszo) == True:
-        print ("Gratulalok, nyertel!", elet, " eleted maradt.")
-    if megfejtett(szo, betuk, megjelenszo) == False:
-        print("Sajnalom, nem nyertel,ez lett volna a megoldas: ", szo)
+        if(kozte_van(betu, betuk)):
+            print("Ezt a betut mar megadtad")
+        else:
+            betuk.append(betu)
+            if tartalmazza(szo, betu):
+                print(megjelenites(szo,betuk))
+            else :
+                print("Nincs talalat, eleted:", eletek(maxelet, rossz_tippek(szo, betuk)))
+            
+
+    if megfejtett(szo, betuk, megjelenszo):
+        print ("Gratulalok, nyertel!", eletek(maxelet, rossz_tippek(szo, betuk)), " eleted maradt.")
+    else:
+        print("Sajnalom, nem nyertel,ez lett volna a megoldas: ", szo)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+    
+    
+
+   
            
     
 
