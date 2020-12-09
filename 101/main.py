@@ -132,7 +132,6 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
     """
 
     betuk = []
-    megjelenszo = [] 
     szo = list(szo)
     while maxelet-rossz_tippek(szo, betuk) > 0 and not (megfejtett(szo, betuk)):
         print("Kerem a betut!")
@@ -141,6 +140,7 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
             print("Ezt a betut mar megadtad")
         else:
             betuk.append(betu)
+            print(betuk)
             if tartalmazza(szo, betu):
                 print(megjelenites(szo,betuk))
             else :
