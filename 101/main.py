@@ -10,8 +10,8 @@ def kozte_van(betu:str, betuk:Tippek) -> bool:
         betuk (Tippek): betűk listája
 
     Returns:
-        bool: `True` ha benne van, `False` ha nincsen.
-    """
+        bool: `True` ha benne van, `False` ha nincsen."""
+
     if betu in betuk:
         return True
     else:
@@ -40,7 +40,8 @@ def megjelenites(szo:str, betuk:Tippek) -> str:
         else: megjelenszo.append('_')
     return megjelenszo
         
-def megfejtett(szo:str, betuk:Tippek) -> bool:
+
+def megfejtett(szo:str, betuk:Tippek, megjelenszo) -> bool:
     """Megadja, hogy sikerült-e már megfejtenünk a szót, azaz minden benne levő betű már a tippjeink között van.
 
     Args:
@@ -49,12 +50,14 @@ def megfejtett(szo:str, betuk:Tippek) -> bool:
 
     Returns:
         bool: `True` ha teljesen megfejtettük a szót, `False` különben
-    """
     
+    """
     for i in range(len(szo)):
         if not(szo[i] in betuk):
             return False
     return True
+        
+  
 
 def tartalmazza(szo:str, betu:str) -> bool:
     """Megadja, hogy a megaadott betű szerepel-e a megadott szóban.
@@ -99,7 +102,6 @@ def eletek(osszes:int,elhasznalt:int)->str:
     Returns:
         str: 😄😄😄💀💀 formátumú indikátor (a példa adatai: 5 összes, 2 elhasznált)
     """
-
     elet=[]
     osszes = maxelet-elhasznalt
     for i in range (maxelet):
@@ -109,7 +111,7 @@ def eletek(osszes:int,elhasznalt:int)->str:
             elet.append("💀")
     return elet
 
-def akasztofa(szo:str,osszes_elet:int) -> None:
+def akasztofa(szo:str,maxelet:int) -> None:
 
     """Végigvisz egy akasztófa játékot, ahol a megadott szót kell kitalálni, és `osszes_elet` rossz tipp után vesztettünk.
 
@@ -131,30 +133,25 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
         osszes_elet (int): az életeink száma, azaz hány rossz tipp után vesztettünk
     """
 
-    betuk = []
-    szo = list(szo)
-    while maxelet-rossz_tippek(szo, betuk) > 0 and not (megfejtett(szo, betuk)):
-        print("Kerem a betut!")
+    betuk, megjelenszo, szo = [], [], list(szo)
+    while maxelet-rossz_tippek(szo, betuk) > 0 and not(megfejtett(szo, betuk, megjelenszo)):
+        print("Kérem a betűt!")
         betu = input()
         if(kozte_van(betu, betuk)):
-            print("Ezt a betut mar megadtad")
+            print("Ezt a betűt már megadtad")
         else:
             betuk.append(betu)
             print(betuk)
             if tartalmazza(szo, betu):
                 print(megjelenites(szo,betuk))
             else :
-                print("Nincs talalat, eleted:", eletek(maxelet, rossz_tippek(szo, betuk)))
+                print("Nincs találat, Életed:", eletek(maxelet, rossz_tippek(szo, betuk)))
             
 
-    if megfejtett(szo, betuk):
+    if megfejtett(szo, betuk, megjelenszo):
         print ("Gratulalok, nyertel!", eletek(maxelet, rossz_tippek(szo, betuk)), " eleted maradt.")
     else:
-        print("Sajnalom, nem nyertel,ez lett volna a megoldas: ", szo)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-    
-    
-
-   
+        print("Sajnalom, nem nyertel,ez lett volna a megoldas: ", szo)
            
     
 
@@ -165,8 +162,3 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
 szo=input()
 maxelet=int(input())
 akasztofa(szo,maxelet)
-
-
-
-
-
