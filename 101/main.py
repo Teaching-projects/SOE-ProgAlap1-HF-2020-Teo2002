@@ -95,8 +95,8 @@ def eletek(osszes:int,elhasznalt:int)->str:
     """
    
     eletek = (osszes - elhasznalt) * "😄"
-    elhasznaltelet = elhasznalt * "💀"
-    maradt = eletek + elhasznaltelet
+    elhasznalt_elet = elhasznalt * "💀"
+    maradt = eletek + elhasznalt_elet
     return maradt
 
 
@@ -115,24 +115,33 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
     """
     
     tippek = []
-    elhasznaltelet = 0
+    elhasznalt_elet = 0
 
     while True:
         print(megjelenites(szo,tippek))
-        print(eletek(osszes_elet,elhasznalt))
+        print(eletek(osszes_elet,elhasznalt_elet))
         print(tippek)
         betu = input("Adja meg a kovetkezo betut: ")
         print(betu)
         tippek.append(betu)
         if not tartalmazza(szo,betu):
-            elhasznaltelet += 1
+            elhasznalt_elet += 1
         if megfejtett(szo,tippek):
             print(szo)
-            print("Gratulalok, nyertel, es meg {} eleted maradt!".format(osszes_elet-elhasznalt))
+            print("Gratulalok, nyertel, es meg {} eleted maradt!".format(osszes_elet-elhasznalt_elet))
             break
-        if osszes_elet == elhasznaltelet:
+        if osszes_elet == elhasznalt_elet:
             print("Sajnalom, nem nyertel, ez lett volna a megoldas: {}".format(szo))
             break
+    
+
+
+
+# Ez alatt ne tessek modositani.
+
+szo=input()
+maxelet=int(input())
+akasztofa(szo,maxelet)
     
 
 
