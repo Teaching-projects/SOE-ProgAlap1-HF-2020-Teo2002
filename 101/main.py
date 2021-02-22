@@ -11,6 +11,7 @@ def kozte_van(betu:str, betuk:Tippek) -> bool:
     Returns:
         bool: `True` ha benne van, `False` ha nincsen.
     """
+
     if betu in betuk:
         return True
     else: 
@@ -28,12 +29,14 @@ def megjelenites(szo:str, betuk:Tippek) -> str:
     Returns:
         str: a megjelenített változata a szónak
     """
-    szoveg = ""
+
+    string = ""
     for betu in szo:
-        if kozte_van(betu,betuk+specialis_karakterek):
-            szoveg += betu
-        else: szoveg += "_"
-    return szoveg
+        if kozte_van(betu, betuk + specialis_karakterek):
+            string += betu
+        else: 
+            string += "_"
+    return string
 
 
 def megfejtett(szo:str, betuk:Tippek) -> bool:
@@ -44,11 +47,12 @@ def megfejtett(szo:str, betuk:Tippek) -> bool:
     Returns:
         bool: `True` ha teljesen megfejtettük a szót, `False` különben
     """
-    megfejtes = 0
+
+    osszeg = 0
     for betu in szo:
         if betu in betuk or betu in specialis_karakterek:
-            megfejtes += 1
-    if megfejtes == len(szo):
+            osszeg += 1
+    if osszeg == len(szo):
         return True
     else: 
         return False
@@ -62,7 +66,7 @@ def tartalmazza(szo:str, betu:str) -> bool:
     Returns:
         bool: `True` ha szerepel, `False` ha nem    
     """
-    
+
     if betu in szo:
         return True
     else: 
@@ -77,11 +81,12 @@ def rossz_tippek(szo:str, betuk:Tippek) -> int:
     Returns:
         int: a rossz tippek száma
     """
-    rossztipp = 0
+
+    rossz = 0
     for i in betuk:
         if i not in szo:
-            rossztipp += 1
-    return rossztipp
+            rossz += 1
+    return rossz
 
 
 def eletek(osszes:int,elhasznalt:int)->str:
@@ -93,11 +98,11 @@ def eletek(osszes:int,elhasznalt:int)->str:
     Returns:
         str: 😄😄😄💀💀 formátumú indikátor (a példa adatai: 5 összes, 2 elhasznált)
     """
-   
+
     eletek = (osszes - elhasznalt) * "😄"
-    elhasznalt_elet = elhasznalt * "💀"
-    maradt = eletek + elhasznalt_elet
-    return maradt
+    elhasznaltelet = elhasznalt * "💀"
+    maradek = eletek + elhasznaltelet
+    return maradek
 
 
 def akasztofa(szo:str,osszes_elet:int) -> None:
@@ -115,33 +120,24 @@ def akasztofa(szo:str,osszes_elet:int) -> None:
     """
     
     tippek = []
-    elhasznalt_elet = 0
+    elhasznalt = 0
 
     while True:
         print(megjelenites(szo,tippek))
-        print(eletek(osszes_elet,elhasznalt_elet))
+        print(eletek(osszes_elet,elhasznalt))
         print(tippek)
         betu = input("Adja meg a kovetkezo betut: ")
         print(betu)
         tippek.append(betu)
         if not tartalmazza(szo,betu):
-            elhasznalt_elet += 1
+            elhasznalt += 1
         if megfejtett(szo,tippek):
             print(szo)
-            print("Gratulalok, nyertel, es meg {} eleted maradt!".format(osszes_elet-elhasznalt_elet))
+            print("Gratulalok, nyertel, es meg {} eleted maradt!".format(osszes_elet-elhasznalt))
             break
-        if osszes_elet == elhasznalt_elet:
+        if osszes_elet == elhasznalt:
             print("Sajnalom, nem nyertel, ez lett volna a megoldas: {}".format(szo))
             break
-    
-
-
-
-# Ez alatt ne tessek modositani.
-
-szo=input()
-maxelet=int(input())
-akasztofa(szo,maxelet)
     
 
 
