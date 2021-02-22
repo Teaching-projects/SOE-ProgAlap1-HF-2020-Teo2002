@@ -8,6 +8,7 @@ class Time:
         Args:
             seconds (int): a masodpercek szama
         """
+
         self.seconds = seconds
         
     def to_seconds(self) -> int:
@@ -21,6 +22,7 @@ class Time:
         >>> Time(345).to_seconds()
         345
         """
+
         return self.seconds
 
     def _ss(self)->int:
@@ -36,6 +38,7 @@ class Time:
         >>> Time(1234)._ss()
         34
         """
+
         while self.seconds > 60:
             self.seconds -= 60
         return self.seconds
@@ -53,6 +56,7 @@ class Time:
         >>> Time(1234)._mm()
         20
         """
+
         return (self.seconds // 60)
     
     def _hh(self) -> int:
@@ -72,6 +76,7 @@ class Time:
         >>> Time(12345)._hh()
         3
         """
+
         return (self.seconds//(60*60))
     
     def pretty_format(self) -> str:
@@ -95,13 +100,27 @@ class Time:
         '34:17:36'
         """
 
-        if self.seconds < 60:
-            return str(self._ss())
-        elif self.seconds >= 60 and self.seconds < 3600:
-            return "{}:{:02d}".format((self._mm() % 60), (self._ss()) % 3600)
-        elif self.seconds >= 3600:
-            return "{}:{:02d}:{:02d}".format(self._hh(), self._mm() % 60, self._ss() % 3600)
+        second = self.seconds
+        hour = None
+        minutes = None
+        seconds = None 
 
+        hour = Time(second)._hh()
+        second -= 3600*hour
+
+        minutes = Time(second)._mm()
+        second -= minutes * 60
+
+        seconds = Time(second)._ss()
+
+        if hour > 0:
+            return f'{hour:d}:{minutes:02d}:{seconds:02d}'
+
+        elif hour == 0 and minutes == 0:
+            return f'{seconds:02d}'
+
+        else: 
+            return f'{minutes}:{seconds:02d}'
 
 
     def set_from_string(self, time:str) -> int:
