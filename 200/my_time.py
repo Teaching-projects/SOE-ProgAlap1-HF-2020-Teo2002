@@ -99,7 +99,7 @@ class Time:
             return str(self._ss())
         elif self.seconds >= 60 and self.seconds < 3600:
             return "{}:{:02d}".format((self._mm() % 60), (self._ss()) % 3600)
-        else:
+        elif self.seconds >= 3600:
             return "{}:{:02d}:{:02d}".format(self._hh(), self._mm() % 60, self._ss() % 3600)
 
 
