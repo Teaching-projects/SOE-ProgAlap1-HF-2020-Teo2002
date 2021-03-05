@@ -111,30 +111,48 @@ Felev vegi jegyek
 class DataSet:
 
     def __init__(self, name) -> None:
-        pass
+        self.name = name
+        self.data = []
     
     def record(self,data) -> None:
-        pass
+        self.data.append(data)
     
     def average(self) -> float:
-        pass
+        sum = 0
+        count = 0
+        for i in self.data:
+            sum +=i
+            count += 1
+        return sum/count
 
     def min(self) -> int:
-        pass
+       return min(self.data)
 
     def max(self) -> int:
-        pass
+        return max(self.data)
     
     def count(self,x) -> int:
-        pass
+        count = 0
+        for i in self.data:
+            if i == x:
+                count += 1
+        return count
     
     def probability(self,x) -> float:
-        pass
+        count = self.count(x)
+        all = len(self.data)
+        return count/all
     
     def range(self) -> tuple:
-        pass
+        min = self.min()
+        max = self.max()
+        return (min,max)
 
     def print_histogram(self) -> None:
-        pass
-
+        print(self.name)
+        length = len(self.name)
+        print("-"*length)
+        
+        for i in range(self.min(),self.max()+1):
+            print("{:>5}{}{}{}".format(i," ", "| ", "#" * self.count(i)))
 
