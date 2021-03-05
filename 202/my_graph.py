@@ -93,15 +93,14 @@ class Graph:
             return True
     
     def add_edge(self,vertex1,vertex2):
-        if self.has_edge(vertex1,vertex2): 
+        if [vertex1,vertex2] in self.edges or [vertex2,vertex1] in self.edges: 
             return False
         else:
-            self.edges.append("{}{}".format(vertex1,vertex2))
-            self.edges.append("{}{}".format(vertex2,vertex1))
+            self.edges.append([vertex1,vertex2])
             return True
     
     def has_edge(self,vertex1,vertex2):
-        if "{}{}".format(vertex1,vertex2) and "{}{}".format(vertex2,vertex1) in self.edges: 
+        if [vertex1,vertex2] in self.edges or [vertex2,vertex1] in self.edges:
             return True
         else: 
             return False
