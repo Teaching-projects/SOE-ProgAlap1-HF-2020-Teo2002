@@ -86,11 +86,11 @@ class Graph:
             return False
     
     def add_vertex(self, vertex):
-        if self.has_vertex(vertex): 
+        if vertex in self.vertices:
             return False
-        else: 
+        else:
             self.vertices.append(vertex)
-        return True
+            return True
     
     def add_edge(self,vertex1,vertex2):
         if self.has_edge(vertex1,vertex2): 
